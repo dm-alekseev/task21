@@ -24,10 +24,10 @@ scrape_configs:
           job: varlogs
           __path__: /var/log/*log
 
-  #- job_name: docker
-  #  static_configs:
-  #    - targets:
-  #        - localhost
-  #      labels:
-  #        job: docker_logs
-  #        __path__: /var/lib/docker/containers/*/*-json.log
+  - job_name: docker
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: docker_logs
+          __path__: /var/lib/docker/containers/*/*-json.log

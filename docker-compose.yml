@@ -1,6 +1,7 @@
 services:
   nginx:
-    image: nginx:alpine-slim
+    image: nginx:alpine
+    #image: nginx:alpine-slim
     volumes:
       - ./certs:/etc/nginx/certs
       - ./nginx.conf:/etc/nginx/conf.d
@@ -11,7 +12,11 @@ services:
       - "443:443"
     networks:
       - backend
-     
+    healthcheck:
+      test: [ "CMD", "curl", "-f","-k", "https://localhost" ]
+      interval: 10s
+      timeout: 10s
+      retries: 20 
 
   promtail:
     image: grafana/promtail:latest
@@ -26,6 +31,8 @@ services:
 
   loki:
     image: grafana/loki:latest
+    environment:
+      TZ: ${SYSTEM_TIMEZONE:-Europe/Minsk}
     ports:
       - "3100:3100"
     networks:
@@ -37,7 +44,7 @@ services:
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
-    environment:
+    environment:     
       - GF_SECURITY_ADMIN_PASSWORD=admin 
     networks:
       - backend

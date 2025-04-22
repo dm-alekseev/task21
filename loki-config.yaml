@@ -39,5 +39,13 @@ ruler:
 frontend:
   encoding: protobuf
 
+# указываем для менеджера по умолчанию,
+# что он может удалять старые логи, а также, что в нашем понимании "старые логи"
+# (те которые старше 168 часов).
+table_manager:
+  retention_deletes_enabled: true
+  retention_period: 168h
+
+
 analytics: 
   reporting_enabled: false
