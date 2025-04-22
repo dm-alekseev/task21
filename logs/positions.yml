@@ -1,4 +1,4 @@
 positions:
   /var/log/nginx/access.log: "2448"
   /var/log/nginx/access_redblue.log: "0"
-  /var/log/nginx/error.log: "5452"
+  /var/log/nginx/error.log: "11948"

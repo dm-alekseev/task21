@@ -21,7 +21,8 @@ services:
     command: ["-config.file=/etc/promtail/config.yaml"]
     networks:
       - backend
-      
+    ports:
+       - "9080:9080" 
 
   loki:
     image: grafana/loki:latest
