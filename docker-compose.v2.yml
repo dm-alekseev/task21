@@ -5,8 +5,8 @@ services:
       - "80:80"
       - "443:443"
       - "3100:3100"
-  networks:
-     - backend
+    networks:
+    - backend
 
   grafana:
     image: grafana/grafana:latest
