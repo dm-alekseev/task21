@@ -2,11 +2,13 @@ services:
   nginx:
     image: nginx:alpine-slim
     volumes:
+      - ./certs:/etc/nginx/certs
       - ./nginx.conf:/etc/nginx/conf.d
       - ./logs:/var/log/nginx
       - ./html:/usr/share/nginx/html
     ports:
       - "80:80"
+      - "443:443"
     networks:
       - backend
      
@@ -14,7 +16,7 @@ services:
   promtail:
     image: grafana/promtail:latest
     volumes:
-      - ./promtail-config.yaml:/etc/promtail/config.yaml
+      - ./promtail-config/config.yaml:/etc/promtail/config.yaml
       - ./logs:/var/log/nginx
     command: ["-config.file=/etc/promtail/config.yaml"]
     networks:
