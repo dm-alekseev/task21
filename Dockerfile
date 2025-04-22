@@ -2,7 +2,7 @@ FROM nginx:alpine-slim
 
 RUN apk add --no-cache unzip 
 
-ENV PROMTAIL_VERSION=3.0.0
+ENV PROMTAIL_VERSION=3.3.1
 RUN curl -LO https://github.com/grafana/loki/releases/download/v${PROMTAIL_VERSION}/promtail-linux-amd64.zip && \
     unzip promtail-linux-amd64.zip && \
     mv promtail-linux-amd64 /usr/local/bin/promtail && \
